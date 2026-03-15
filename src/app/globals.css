@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-outfit: 'Outfit', sans-serif;
+    --font-jetbrains: 'JetBrains Mono', monospace;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #080F17;
+    color: #F0F6FF;
+    font-family: var(--font-outfit), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #080F17;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #007A74;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00D4C8;
+  }
+}
+
+@layer components {
+  /* ── BUTTONS ── */
+  .btn-primary {
+    @apply bg-brand-teal text-brand-bg font-bold px-6 py-3 text-sm tracking-widest uppercase 
+           hover:bg-opacity-90 transition-all duration-200 hover:-translate-y-0.5 
+           hover:shadow-[0_8px_24px_rgba(0,212,200,0.3)] active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply border border-brand-teal text-brand-teal px-6 py-3 text-sm tracking-widest uppercase 
+           hover:bg-brand-teal hover:text-brand-bg transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply text-brand-gray-light px-4 py-2 text-sm hover:text-white transition-colors;
+  }
+
+  /* ── INPUTS ── */
+  .input {
+    @apply w-full bg-brand-surface border border-brand-border text-white px-4 py-3 text-sm 
+           placeholder:text-brand-gray focus:outline-none focus:border-brand-teal 
+           transition-colors duration-200;
+  }
+
+  .input-error {
+    @apply border-brand-red focus:border-brand-red;
+  }
+
+  .label {
+    @apply block text-xs font-semibold tracking-widest uppercase text-brand-gray-light mb-2;
+  }
+
+  .error-text {
+    @apply text-brand-red text-xs mt-1;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    @apply bg-brand-card border border-brand-border p-6;
+  }
+
+  .card-hover {
+    @apply card hover:border-brand-teal-dim transition-colors duration-200 cursor-pointer;
+  }
+}
