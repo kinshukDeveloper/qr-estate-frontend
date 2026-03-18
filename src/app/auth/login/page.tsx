@@ -53,7 +53,7 @@ export default function LoginPage() {
 
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-black text-white mb-2">Welcome back</h1>
+        <h1 className="mb-2 text-3xl font-black text-white">Welcome back</h1>
         <p className="text-[#7A95AE] text-sm">
           Sign in to manage your listings and QR codes
         </p>
@@ -140,7 +140,7 @@ export default function LoginPage() {
           { icon: '🇮🇳', label: 'Made for India' },
         ].map(({ icon, label }) => (
           <div key={label} className="text-center">
-            <div className="text-lg mb-1">{icon}</div>
+            <div className="mb-1 text-lg">{icon}</div>
             <div className="text-[10px] text-[#4A6580] tracking-wide uppercase">{label}</div>
           </div>
         ))}

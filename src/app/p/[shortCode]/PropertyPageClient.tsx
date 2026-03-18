@@ -35,6 +35,7 @@ interface Listing {
   agent_phone?: string;
   agent_rera?: string;
   agent_photo?: string;
+  shortCode: string;
   qr_scans?: number;
 }
 
@@ -110,7 +111,7 @@ export function PropertyPageClient({
             <img
               src={images[activeImage]?.url}
               alt={listing.title}
-              className="w-full h-full object-cover transition-opacity duration-300"
+              className="object-cover w-full h-full transition-opacity duration-300"
             />
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
@@ -120,13 +121,13 @@ export function PropertyPageClient({
               <>
                 <button
                   onClick={() => setActiveImage(i => (i - 1 + images.length) % images.length)}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
+                  className="absolute flex items-center justify-center text-white transition-colors -translate-y-1/2 left-3 top-1/2 w-9 h-9 bg-black/40 backdrop-blur-sm hover:bg-black/60"
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button
                   onClick={() => setActiveImage(i => (i + 1) % images.length)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
+                  className="absolute flex items-center justify-center text-white transition-colors -translate-y-1/2 right-3 top-1/2 w-9 h-9 bg-black/40 backdrop-blur-sm hover:bg-black/60"
                 >
                   <ChevronRight size={20} />
                 </button>
@@ -144,7 +145,7 @@ export function PropertyPageClient({
             )}
 
             {/* Image counter */}
-            <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 font-mono">
+            <div className="absolute px-2 py-1 font-mono text-xs text-white top-4 right-4 bg-black/50 backdrop-blur-sm">
               {activeImage + 1}/{images.length}
             </div>
           </>
@@ -166,7 +167,7 @@ export function PropertyPageClient({
                   i === activeImage ? 'border-white' : 'border-transparent opacity-60 hover:opacity-80'
                 }`}
               >
-                <img src={img.url} className="w-full h-full object-cover" alt="" />
+                <img src={img.url} className="object-cover w-full h-full" alt="" />
               </button>
             ))}
           </div>
@@ -174,7 +175,7 @@ export function PropertyPageClient({
       </div>
 
       {/* ── Main Content ───────────────────────────────────────────── */}
-      <div className="max-w-xl mx-auto px-4 pb-32">
+      <div className="max-w-xl px-4 pb-32 mx-auto">
 
         {/* Price + Status */}
         <div className="bg-white border-b-4 border-[#1C1C1C] px-5 py-5 -mx-4">
@@ -321,7 +322,7 @@ export function PropertyPageClient({
 
         {/* Enquiry form */}
         {!isGone && (
-          <EnquiryForm shortCode={listing.short_code} listingTitle={listing.title} />
+          <EnquiryForm shortCode={listing.shortCode} listingTitle={listing.title} />
         )}
 
         {/* Powered by */}
@@ -384,7 +385,7 @@ function EnquiryForm({ shortCode, listingTitle }: { shortCode: string; listingTi
   if (status === 'done') {
     return (
       <div className="bg-white -mx-4 mt-3 px-5 py-8 text-center border-b border-[#EEE]">
-        <div className="text-3xl mb-2">✅</div>
+        <div className="mb-2 text-3xl">✅</div>
         <div className="font-bold text-[#1C1C1C] mb-1">Enquiry Sent!</div>
         <div className="text-sm text-[#666]">The agent will contact you shortly.</div>
       </div>
