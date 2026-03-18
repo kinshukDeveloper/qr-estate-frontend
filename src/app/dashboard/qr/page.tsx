@@ -1,5 +1,5 @@
 'use client';
-
+export const dynamic = 'force-dynamic';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { QrCode, Download, RefreshCw, Eye, EyeOff, Zap, ChevronDown, Check } from 'lucide-react';
@@ -147,14 +147,14 @@ export default function QRPage() {
         </div>
       )}
 
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid gap-6 lg:grid-cols-2">
 
         {/* ── LEFT: Generator ─────────────────────────────────── */}
         <div className="space-y-4">
           <div className="bg-[#111C28] border border-[#1A2D40] p-6 space-y-5">
             <div>
               <div className="text-[10px] font-bold tracking-widest text-[#00D4C8] uppercase mb-1">Step 1</div>
-              <h2 className="text-sm font-bold text-white mb-3">Select a Listing</h2>
+              <h2 className="mb-3 text-sm font-bold text-white">Select a Listing</h2>
 
               {isLoading ? (
                 <div className="input animate-pulse bg-[#1A2D40] h-11" />
@@ -188,8 +188,8 @@ export default function QRPage() {
             {/* Color */}
             <div>
               <div className="text-[10px] font-bold tracking-widest text-[#00D4C8] uppercase mb-1">Step 2</div>
-              <h2 className="text-sm font-bold text-white mb-3">Choose Color</h2>
-              <div className="flex gap-2 flex-wrap">
+              <h2 className="mb-3 text-sm font-bold text-white">Choose Color</h2>
+              <div className="flex flex-wrap gap-2">
                 {COLORS.map(c => (
                   <button
                     key={c.label}
@@ -214,8 +214,8 @@ export default function QRPage() {
             {/* Frame */}
             <div>
               <div className="text-[10px] font-bold tracking-widest text-[#00D4C8] uppercase mb-1">Step 3</div>
-              <h2 className="text-sm font-bold text-white mb-3">Branding Frame</h2>
-              <label className="flex items-center gap-3 cursor-pointer mb-3">
+              <h2 className="mb-3 text-sm font-bold text-white">Branding Frame</h2>
+              <label className="flex items-center gap-3 mb-3 cursor-pointer">
                 <div
                   onClick={() => setIncludeFrame(!includeFrame)}
                   className={`w-10 h-5 rounded-full transition-colors relative flex-shrink-0 ${
@@ -233,7 +233,7 @@ export default function QRPage() {
                   type="text"
                   value={frameLabel}
                   onChange={e => setFrameLabel(e.target.value)}
-                  className="input text-sm"
+                  className="text-sm input"
                   placeholder="Label text on frame..."
                   maxLength={60}
                 />
@@ -281,7 +281,7 @@ export default function QRPage() {
               </div>
 
               {/* Listing name */}
-              <div className="text-center mb-4">
+              <div className="mb-4 text-center">
                 <div className="text-xs font-bold text-white mb-0.5 truncate">{generatedQR.listing_title}</div>
                 <div className="text-[10px] text-[#4A6580] font-mono">{generatedQR.target_url}</div>
               </div>
@@ -338,7 +338,7 @@ export default function QRPage() {
           <div className="text-[10px] font-bold tracking-widest text-[#4A6580] uppercase mb-3">
             All QR Codes — {qrCodes.length} total
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {qrCodes.map(qr => (
               <div
                 key={qr.id}
